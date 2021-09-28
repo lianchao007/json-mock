@@ -1,6 +1,7 @@
 const Koa = require('koa')
 const url = require('url')
 const fs = require('fs')
+const mime = require('mime-types')
 const app = new Koa()
 app.use(async ctx => {
 	let MyUrl = url.parse(ctx.request.url)
@@ -16,6 +17,9 @@ app.use(async ctx => {
 		} catch(err) {
 			try {
 				data = fs.readFileSync(src)
+				let mimeType = mime.lookup(src)
+				console.log(mimeType)
+				ctx.set('content-type', mimeType)
 			} catch(error) {}
 		}
 	}

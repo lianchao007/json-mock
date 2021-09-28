@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="http://localhost:3000/other/style.css">
+</head>
+<body>
+    <img src="http://localhost:3000/img/1.png">
+    <script type="text/javascript">
+        function getPrime(num) {
+            if(num < 2) {
+                return []
+            }
+            let primes = getPrime(num - 1)
+            let flag = true
+            for(let i = 0; i < primes.length; i++) {
+                if(primes[i] * primes[i] > num) {
+                    break
+                }
+                if(num % primes[i] === 0) {
+                    flag = false
+                    break
+                }
+            }
+            if(flag) {
+                primes.push(num)
+            }
+            return primes
+        }
+        console.log(getPrime(1000))
+    </script>
+</body>
+</html>
